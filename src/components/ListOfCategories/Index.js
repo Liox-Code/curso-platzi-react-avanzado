@@ -19,7 +19,7 @@ function useCategoriesDate () {
   return { categories, loading }
 }
 
-export const ListOfCategories = () => {
+const ListOfCategoriesComponent = () => {
   const { categories, loading } = useCategoriesDate()
   const [showFixed, setShowFixed] = useState(false)
 
@@ -41,7 +41,7 @@ export const ListOfCategories = () => {
             ? <Item key='loading'><Category /></Item>
             : categories.map(category =>
               <Item key={category.id}>
-                <Category {...category} />
+                <Category {...category} path={`/pet/${category.id}`} />
               </Item>
             )
         }
@@ -56,3 +56,5 @@ export const ListOfCategories = () => {
     </>
   )
 }
+
+export const ListOfCategories = React.memo(ListOfCategoriesComponent)
